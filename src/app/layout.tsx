@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description:
     "Factory-direct OEM/ODM for premium folding boxes, rigid gift boxes, and paper bags. Serving global brands with structural design expertise.",
   metadataBase: new URL("https://www.blfpack.com"),
+  // Block indexing until site is ready
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
