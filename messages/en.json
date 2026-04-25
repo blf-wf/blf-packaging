@@ -1,0 +1,23 @@
+{
+  "Home": {
+    "heroTitle": "Custom Paper & Gift Packaging — From Design to Delivery",
+    "heroSubtitle": "Factory-direct OEM/ODM for premium folding boxes, rigid gift boxes, and paper bags. Serving global brands with structural design expertise.",
+    "ctaQuote": "Get a Quote",
+    "ctaSample": "Request Free Sample & 3D Mockup"
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "applications": "Applications",
+    "customization": "Customization",
+    "blog": "Blog",
+    "compliance": "Compliance",
+    "contact": "Contact"
+  },
+  "Common": {
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "contactUs": "Contact Us"
+  }
+}
