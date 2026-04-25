@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from "@/lib/utils";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -148,7 +148,7 @@ export function CtaQuote() {
             {/* Box Type */}
             <div className="space-y-1.5">
               <Label>Box Type *</Label>
-              <Select onValueChange={(v) => setValue("boxType", v)}>
+              <Select onValueChange={(v) => { if (v) setValue("boxType", v) }}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select box type" />
                 </SelectTrigger>
@@ -168,7 +168,7 @@ export function CtaQuote() {
             {/* Quantity */}
             <div className="space-y-1.5">
               <Label>Quantity *</Label>
-              <Select onValueChange={(v) => setValue("quantity", v)}>
+              <Select onValueChange={(v) => { if (v) setValue("quantity", v) }}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select quantity range" />
                 </SelectTrigger>

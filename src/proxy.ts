@@ -4,7 +4,7 @@ import { routing } from './i18n/routing';
 const intlMiddleware = createMiddleware(routing);
 
 export function proxy(request: Request) {
-  return intlMiddleware(request);
+  return intlMiddleware(request as unknown as Parameters<typeof intlMiddleware>[0]);
 }
 
 export const config = {
