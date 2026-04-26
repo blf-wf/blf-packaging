@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   getBoxTypes,
   getBoxTypeBySlug,
@@ -11,6 +12,7 @@ import { ProductCard } from "@/components/marketing/product-card";
 import { Breadcrumb } from "@/components/marketing/breadcrumb";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -23,6 +25,7 @@ import {
   PackageCheck,
   ArrowRight,
 } from "lucide-react";
+import { boxTypeImages } from "@/lib/images";
 
 const SITE = "https://www.blfpack.com";
 
@@ -120,10 +123,15 @@ export default async function ProductsPage({
       />
 
       <div className="mt-6 grid gap-10 lg:grid-cols-2">
-        {/* Image placeholder */}
-        <div className="flex aspect-square items-center justify-center rounded-lg bg-muted">
-          <Box className="h-24 w-24 text-muted-foreground/30" />
-        </div>
+        <AspectRatio ratio={1} className="rounded-lg bg-muted overflow-hidden">
+          <Image
+            src={boxTypeImages[product.boxStructure] ?? boxTypeImages["magnetic-rigid-box"]}
+            alt={product.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </AspectRatio>
 
         <div className="space-y-6">
           <div>

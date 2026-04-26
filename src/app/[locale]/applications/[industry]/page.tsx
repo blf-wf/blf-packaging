@@ -1,13 +1,16 @@
 import { Breadcrumb } from "@/components/marketing/breadcrumb";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Shield } from "lucide-react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getApplicationBySlug, getAllApplicationSlugs } from "@/lib/cms";
+import { applicationImages } from "@/lib/images";
 
 interface PageProps {
   params: Promise<{ industry: string }>;
@@ -49,6 +52,18 @@ export default async function ApplicationDetailPage({ params }: PageProps) {
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">{app.label}</h1>
       <p className="mt-3 text-muted-foreground">{app.hero}</p>
+
+      {applicationImages[industry] && (
+        <AspectRatio ratio={21 / 9} className="mt-8 rounded-lg bg-muted overflow-hidden">
+          <Image
+            src={applicationImages[industry]}
+            alt={app.label}
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </AspectRatio>
+      )}
 
       <div className="mt-8 grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-8">

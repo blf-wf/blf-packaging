@@ -1,7 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Box } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { heroFactory } from "@/lib/images";
 
 export async function Hero() {
   const t = await getTranslations("Home");
@@ -11,7 +13,20 @@ export async function Hero() {
       {/* Brand accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-primary/60" />
 
-      {/* Decorative background */}
+      {/* Hero background image */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <Image
+          src={heroFactory}
+          alt=""
+          fill
+          className="object-cover opacity-25"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+      </div>
+
+      {/* Decorative blur accents */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
         <div className="absolute -bottom-20 left-0 h-[400px] w-[400px] rounded-full bg-accent/30 blur-3xl" />

@@ -1,5 +1,8 @@
 import { Badge } from "@/components/ui/badge";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Image from "next/image";
 import { Factory, Users, Wrench, Shield } from "lucide-react";
+import { imgFactoryFloor } from "@/lib/images";
 
 const STATS = [
   { icon: Factory, value: "12,000 m²", label: "Manufacturing Facility" },
@@ -13,6 +16,15 @@ export function AboutFactory() {
     <section className="bg-muted/30 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <AspectRatio ratio={4 / 3} className="rounded-lg bg-muted overflow-hidden">
+            <Image
+              src={imgFactoryFloor}
+              alt="Blf packaging production line"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </AspectRatio>
           <div>
             <Badge variant="secondary" className="mb-4">
               One-Stop Factory
@@ -32,20 +44,20 @@ export function AboutFactory() {
               starting from 500 pcs for selected projects. ISO 9001, SGS, CE,
               ROHS, and FSC certified.
             </p>
-          </div>
-          <div className="grid grid-cols-2 gap-6">
-            {STATS.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex flex-col items-center justify-center rounded-lg border bg-card p-6 text-center"
-              >
-                <stat.icon className="mb-3 h-8 w-8 text-primary" />
-                <span className="text-2xl font-bold">{stat.value}</span>
-                <span className="mt-1 text-sm text-muted-foreground">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {STATS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="flex flex-col items-center justify-center rounded-lg border bg-card p-4 text-center"
+                >
+                  <stat.icon className="mb-2 h-7 w-7 text-primary" />
+                  <span className="text-xl font-bold">{stat.value}</span>
+                  <span className="mt-1 text-xs text-muted-foreground">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

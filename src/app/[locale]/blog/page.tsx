@@ -2,9 +2,10 @@ import { Breadcrumb } from "@/components/marketing/breadcrumb";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import Link from "next/link";
-import { FileText } from "lucide-react";
 import type { Metadata } from "next";
+import { imgBlogMaterials, imgBlogCompliance, imgBlogTrends } from "@/lib/images";
 
 const POSTS = [
   {
@@ -14,6 +15,7 @@ const POSTS = [
       "A practical guide to selecting paperboard grades, GSM ranges, and finishing options for rigid gift boxes — balancing cost, durability, and brand perception.",
     category: "Materials",
     date: "2026-03-15",
+    image: imgBlogMaterials,
   },
   {
     slug: "ppwr-compliance-packaging-guide",
@@ -22,6 +24,7 @@ const POSTS = [
       "The Packaging and Packaging Waste Regulation is reshaping packaging requirements across Europe. Here's what food, beauty, and luxury brands should prepare for.",
     category: "Compliance",
     date: "2026-02-28",
+    image: imgBlogCompliance,
   },
   {
     slug: "packaging-trends-2026",
@@ -30,6 +33,7 @@ const POSTS = [
       "From PVC-free inserts to digital foil stamping, the key trends driving custom packaging decisions this year — and how to apply them to your brand.",
     category: "Industry",
     date: "2026-01-20",
+    image: imgBlogTrends,
   },
 ];
 
@@ -55,9 +59,15 @@ export default function BlogPage() {
               <CardContent className="flex gap-5 p-5">
                 <AspectRatio
                   ratio={1}
-                  className="hidden w-24 shrink-0 items-center justify-center rounded-md bg-muted sm:flex"
+                  className="hidden w-24 shrink-0 overflow-hidden rounded-md bg-muted sm:block"
                 >
-                  <FileText className="h-8 w-8 text-primary/30" />
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="96px"
+                  />
                 </AspectRatio>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 mb-1">

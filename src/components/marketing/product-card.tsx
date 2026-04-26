@@ -1,18 +1,32 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Box } from "lucide-react";
 import type { Product } from "@/lib/cms";
+import { boxTypeImages } from "@/lib/images";
 
 export function ProductCard({ product }: { product: Product }) {
+  const fallbackImg = boxTypeImages[product.boxStructure];
+
   return (
     <Link href={`/products/${product.slug}`}>
       <Card className="group h-full transition-shadow hover:shadow-md">
-        <AspectRatio ratio={4 / 3} className="bg-muted">
-          <div className="flex h-full items-center justify-center">
-            <Box className="h-12 w-12 text-muted-foreground/40" />
-          </div>
+        <AspectRatio ratio={4 / 3} className="bg-muted overflow-hidden">
+          {fallbackImg ? (
+            <Image
+              src={fallbackImg}
+              alt={product.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <Box className="h-12 w-12 text-muted-foreground/40" />
+            </div>
+          )}
         </AspectRatio>
         <CardContent className="p-5">
           <Badge variant="secondary" className="mb-2 text-xs">

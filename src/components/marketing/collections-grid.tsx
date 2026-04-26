@@ -1,43 +1,38 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Image from "next/image";
 import Link from "next/link";
-import { Box, Gift, Layers, Package, Send, Sparkles } from "lucide-react";
+import { boxTypeImages } from "@/lib/images";
 
 const COLLECTIONS = [
   {
     slug: "magnetic-rigid-box",
     label: "Magnetic / Foldable Rigid Box",
-    icon: Sparkles,
     description: "Premium magnetic closure boxes with foldable design — ideal for luxury gift sets, cosmetics, and high-end retail.",
   },
   {
     slug: "lid-and-base-box",
     label: "Lid and Base / Setup Box",
-    icon: Box,
     description: "Classic two-piece rigid boxes for premium presentation. Custom inserts for product protection and unboxing experience.",
   },
   {
     slug: "drawer-box",
     label: "Drawer Box",
-    icon: Layers,
     description: "Slide-out drawer style boxes — popular for jewelry, watches, and premium confectionery packaging.",
   },
   {
     slug: "mailer-box",
     label: "Mailer / Shipping Box",
-    icon: Send,
     description: "Durable e-commerce mailer boxes designed for DTC subscription brands. Strong corrugated construction with custom printing.",
   },
   {
     slug: "folding-carton",
     label: "Folding Carton",
-    icon: Package,
     description: "Lightweight, cost-effective folding cartons for food, beauty, and consumer goods. Offset or digital printing available.",
   },
   {
     slug: "specialty-box",
     label: "Specialty Boxes",
-    icon: Gift,
     description: "Custom shapes, round boxes, cylindrical packaging, and other specialty structures for unique brand presentation.",
   },
 ];
@@ -58,16 +53,22 @@ export function CollectionsGrid() {
           {COLLECTIONS.map((item) => (
             <Link key={item.slug} href={`/products/${item.slug}`}>
               <Card className="group h-full border transition-all duration-300 hover:border-primary/40 hover:shadow-sm">
-                <CardContent className="p-6">
-                  <AspectRatio ratio={4 / 3} className="mb-4 rounded-md bg-muted">
-                    <div className="flex h-full items-center justify-center">
-                      <item.icon className="h-12 w-12 text-primary/30" />
-                    </div>
+                <CardContent className="p-0">
+                  <AspectRatio ratio={4 / 3} className="rounded-t-md bg-muted overflow-hidden">
+                    <Image
+                      src={boxTypeImages[item.slug]}
+                      alt={item.label}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </AspectRatio>
-                  <h3 className="text-lg font-semibold">{item.label}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold">{item.label}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </Link>

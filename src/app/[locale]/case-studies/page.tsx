@@ -1,14 +1,26 @@
 import { Breadcrumb } from "@/components/marketing/breadcrumb";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { applicationImages, imgFactoryFloor } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
     "Packaging case studies across food, beauty, electronics, and DTC sectors. See how brands solved compliance, cost, and unboxing challenges with custom packaging.",
+};
+
+const industryImageMap: Record<string, string> = {
+  "Food & Confectionery": applicationImages["food-chocolate"],
+  "Beauty & Skincare": applicationImages["cosmetic"],
+  "Electronics & Wearables": applicationImages["electronics"],
+  "Spirits & Beverage": applicationImages["wine-spirits"],
+  "Subscription Box / DTC": applicationImages["subscription-box"],
+  "Teeth Aligner / Medical": applicationImages["teeth-aligner"],
 };
 
 const CASES = [
@@ -120,7 +132,19 @@ export default function CaseStudiesPage() {
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
         {CASES.map((c) => (
           <Card key={c.id} className="border transition-all duration-300 hover:border-primary/40 hover:shadow-sm">
-            <CardContent className="p-6">
+            <CardContent className="p-0">
+              {industryImageMap[c.industry] && (
+                <AspectRatio ratio={21 / 9} className="rounded-t-md bg-muted overflow-hidden">
+                  <Image
+                    src={industryImageMap[c.industry]}
+                    alt={c.industry}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </AspectRatio>
+              )}
+              <div className="p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Badge variant="secondary" className="text-xs">{c.industry}</Badge>
                 <Badge variant="outline" className="text-xs">{c.region}</Badge>
@@ -144,6 +168,7 @@ export default function CaseStudiesPage() {
                   </li>
                 ))}
               </ul>
+              </div>
             </CardContent>
           </Card>
         ))}

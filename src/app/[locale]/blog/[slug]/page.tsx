@@ -1,11 +1,20 @@
 import { Breadcrumb } from "@/components/marketing/breadcrumb";
 import { Badge } from "@/components/ui/badge";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getBlogPostBySlug, getAllBlogSlugs } from "@/lib/cms";
+import { imgBlogMaterials, imgBlogCompliance, imgBlogTrends } from "@/lib/images";
+
+const categoryImages: Record<string, string> = {
+  Materials: imgBlogMaterials,
+  Compliance: imgBlogCompliance,
+  Industry: imgBlogTrends,
+};
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -56,6 +65,18 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{post.title}</h1>
         <p className="mt-3 text-muted-foreground">{post.excerpt}</p>
+
+        {categoryImages[post.category] && (
+          <AspectRatio ratio={21 / 9} className="mt-6 rounded-lg bg-muted overflow-hidden">
+            <Image
+              src={categoryImages[post.category]}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </AspectRatio>
+        )}
 
         <Separator className="my-8" />
 
