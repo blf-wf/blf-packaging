@@ -1,0 +1,83 @@
+# 黑湖用户名 → 企业微信 UserID 映射
+# 企业微信 UserID 在管理后台「通讯录 → 成员详情」查看
+# 数据来源：黑湖「系统配置 → 用户」页面 (2026-05-09)
+#
+# 使用方法：
+# 1. 登录企业微信管理后台 work.weixin.qq.com
+# 2. 通讯录 → 点击成员 → 查看「账号」或「UserID」
+# 3. 将 UserID 填入下方 wecom_id 字段
+# 4. 确保每个用户都在企业微信自建应用的「可见范围」内
+
+departments:
+  管理部:
+    members:
+      - name: 王艳辉
+        wecom_id: "wangyanhui"
+        phone: "15915723186"
+
+  业务部:
+    members:
+      - name: 黄欣汝
+        wecom_id: "huangxinru"
+        phone: "15989263436"
+      - name: 潘艳
+        wecom_id: "panyan"
+        phone: "17620861908"
+      - name: 朱国旋
+        wecom_id: "zhuguoxuan"
+        phone: "18024070582"
+      - name: 梁秀华
+        wecom_id: "liangxiuhua"
+        phone: "13392102381"
+      - name: 殷俊
+        wecom_id: "yinjun"
+        phone: "18122188441"
+      - name: 许璇柔
+        wecom_id: "xuxuanrou"
+        phone: "13556435924"
+      - name: Ari 舒绮威
+        wecom_id: "shuqiwei"
+        phone: "15920514201"
+
+  设计部:
+    members:
+      - name: 夏湘
+        wecom_id: "xiaxiang"
+        phone: "19864637662"
+
+  跟单部:
+    members:
+      - name: 王治明
+        wecom_id: "wangzhiming"
+        phone: "13360013570"
+      - name: 曾祥龙
+        wecom_id: "zengxianglong"
+        phone: "15770844167"
+
+  采购部:
+    members:
+      - name: 周细妹
+        wecom_id: "zhouximei"
+        phone: "18922767131"
+
+  生产部:
+    members:
+      - name: 阳介芳
+        wecom_id: "yangjiefang"
+        phone: "13533345598"
+      - name: 烫金师傅
+        wecom_id: "tangjinshifu"
+        phone: "18620163787"
+
+  # 无部门归属（需在企微确认其 UserID）
+  未分配:
+    members:
+      - name: 张柏涛
+        wecom_id: "zhangbaitao"
+        phone: "18011950859"
+
+# 特殊说明：
+# - "烫金师傅" 是角色名称，非真实姓名，但仍需推送。如果企微中没有此人，
+#   可将其 wecom_id 设为空字符串跳过推送，其工序将出现在管理群汇总的「未映射」行。
+# - "Ari 舒绮威" 是带英文名的用户，映射时使用完整字符串 "Ari 舒绮威"。
+# - "张柏涛" 无部门、无手机号（显示为 -），可能在黑湖中未完善信息。

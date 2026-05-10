@@ -1,0 +1,10 @@
+services:
+  overdue-scanner:
+    build: .
+    container_name: overdue-scanner
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./config/users.yaml:/app/config/users.yaml:ro
